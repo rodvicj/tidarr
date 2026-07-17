@@ -30,13 +30,13 @@ export default function MyMixes() {
         >
           <ModuleTitle
             title="My Mixes"
-            total={row?.modules[0]?.pagedList.totalNumberOfItems}
+            total={row?.modules[0]?.pagedList?.totalNumberOfItems}
           />
           {row.modules[0]?.type && (
             <>
               <Module
                 type={row.modules[0].type}
-                data={row.modules[0].pagedList.items}
+                data={row.modules[0].pagedList?.items}
               />
               <ModulePager data={row.modules[0]} type={row.modules[0].type} />
             </>

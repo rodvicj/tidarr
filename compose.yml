@@ -10,7 +10,9 @@ services:
       - 3000:3000
     volumes:
       - ./docker/mnt/config:/shared
-      - ./docker/mnt/library:/music
+      # - ./docker/mnt/library:/music
+      # - ./music:/music
+      - /home/xusr/Music:/music
       - .:/tidarr # only used in dev environment
     restart: 'unless-stopped'
     environment:

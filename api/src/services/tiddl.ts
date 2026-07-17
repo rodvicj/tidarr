@@ -54,8 +54,24 @@ export function tidalDL(id: string, app: Express, onFinish?: () => void) {
     args.push("--path", `${PROCESSING_PATH}/${item.id}`);
   }
 
-  if (item.type === "mix" && config?.templates?.mix) {
-    args.push("-o", config.templates.mix);
+  if (item.type === "mix") {
+    if (config?.templates?.mix) {
+      args.push("-o", config.templates.mix);
+    } else {
+      args.push(
+        "-o",
+        "{playlist.title}/{album.artist}/{album.title}/{item.number:02d}. {item.title_version}",
+      );
+    }
+  } else if (item.type === "playlist" || item.type === "favorite_playlists") {
+    if (config?.templates?.playlist) {
+      args.push("-o", config.templates.playlist);
+    } else {
+      args.push(
+        "-o",
+        "{playlist.title}/{album.artist}/{album.title}/{item.number:02d}. {item.title_version}",
+      );
+    }
   }
 
   if (item.type !== "video" && item.quality) {
